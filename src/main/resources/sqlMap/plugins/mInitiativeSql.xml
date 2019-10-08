@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.abilists.plugins.dao.MInitiativeDao">
+
+	<update id="initiativeTables" parameterType="map">
+		CREATE TABLE IF NOT EXISTS abilists.plugins_m_survey (
+		  pms_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+		  pms_title VARCHAR(100) NOT NULL,
+		  pms_question VARCHAR(1000) NOT NULL,
+		  pms_kind VARCHAR(100) NOT NULL,
+		  pms_option1 VARCHAR(1000) NOT NULL,
+		  pms_option2 VARCHAR(1000) NOT NULL,
+		  pms_option3 VARCHAR(1000) NOT NULL,
+		  pms_option4 VARCHAR(1000) NOT NULL,
+		  pms_option5 VARCHAR(1000) NOT NULL,
+		  pms_option6 VARCHAR(1000) NOT NULL,
+		  pms_option7 VARCHAR(1000) NOT NULL,
+		  pms_status VARCHAR(2) NULL,
+		  pms_delete CHAR(1) NULL DEFAULT '0',
+		  insert_time TIMESTAMP NULL,
+		  update_time TIMESTAMP NULL,
+		  PRIMARY KEY (pms_no)
+		) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
+		CREATE UNIQUE INDEX idx_m_survey_pms_kind ON abilists.plugins_m_survey (pms_kind);
+		
+		CREATE TABLE IF NOT EXISTS abilists.plugins_user_survey (
+		  pus_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+		  pus_subjective CHAR(1) NULL,
+		  pus_answer1 CHAR(1) NOT NULL,
+		  pus_answer2 CHAR(1) NOT NULL,
+		  pus_answer3 CHAR(1) NOT NULL,
+		  pus_answer4 CHAR(1) NOT NULL,
+		  pus_answer5 CHAR(1) NOT NULL,
+		  pus_answer6 CHAR(1) NOT NULL,
+		  pus_answer7 CHAR(1) NOT NULL,
+		  pus_objective VARCHAR(5000) NULL,
+		  pms_no VARCHAR(100) NULL,
+		  pus_status VARCHAR(2) NULL,
+		  pus_delete CHAR(1) NULL,
+		  user_id VARCHAR(100) NOT NULL,
+		  insert_time TIMESTAMP NULL,
+		  update_time TIMESTAMP NULL,
+		  PRIMARY KEY (pus_no)
+		) ENGINE=innoDB DEFAULT CHARSET=utf8mb4;
+		CREATE INDEX idx_user_survey_user_id ON abilists.plugins_user_survey(user_id);
+		CREATE INDEX idx_user_survey_pms_no ON abilists.plugins_user_survey(pms_no);
+	</update>
+
+</mapper>
