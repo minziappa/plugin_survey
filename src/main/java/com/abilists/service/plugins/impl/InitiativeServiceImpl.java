@@ -30,7 +30,7 @@ public class InitiativeServiceImpl extends AbilistsAbstractService implements Pl
 
 	@Override
 	public String createTables(String tableName) throws Exception {
-
+		logger.info("============================================================================1");
 		String strReadResult = null;
 	    StringBuffer sbSql = new StringBuffer();
 	    
@@ -79,7 +79,6 @@ public class InitiativeServiceImpl extends AbilistsAbstractService implements Pl
 	 * @throws Exception
 	 */
 	public String createTables2(String tableName) throws Exception {
-		logger.info("createTables7");
 
 		int intResult = 0;
 

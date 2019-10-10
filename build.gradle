@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 
 // When you build for Jar, please comment with jettyRun
-//apply plugin: 'jetty'
+// apply plugin: 'jetty'
 
 apply plugin: 'org.sonarqube'
 apply plugin: 'jacoco'
@@ -66,7 +66,7 @@ dependencies {
 	compile "org.apache.commons:commons-collections4:4.1"
 	compile "org.freemarker:freemarker:2.3.29"
 	compile "com.abilists:abilists_core:0.2.2"
-	compile 'com.abilists:abilists_plugins:0.0.1'
+	compile 'com.abilists:abilists_plugins:DEV0.0.1'
 	compile "org.mybatis:mybatis:3.2.8"
 	compile "org.mybatis:mybatis-spring:1.2.5"
 	compile 'org.springframework:spring-jdbc:' + springVersion
@@ -92,7 +92,6 @@ jettyRun {
 	contextPath = ''
 }
 */
-
 jar {
     manifest {
         attributes (
@@ -113,6 +112,7 @@ jar {
 	exclude ("**.properties")
 }
 
+
 // $ gradle install
 configure(install.repositories.mavenInstaller) {
     pom.project {
@@ -130,6 +130,7 @@ configure(install.repositories.mavenInstaller) {
     }
 }
 
+
 // $ gradle buildJar
 task buildJar << {
 	copy {
@@ -139,7 +140,6 @@ task buildJar << {
 		include '**/*.jar'
 	}
 }
-
 
 buildJar.dependsOn(install)
 
