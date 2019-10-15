@@ -2,6 +2,6 @@
 <#import "/spring.ftl" as spring/>
 <@layout.myLayout>
 
-test
+${configBean.contextPath?if_exists}test
 
 </@layout.myLayout>
