@@ -1,0 +1,29 @@
+
+
+task buildJar (type: Jar) {
+    manifest {
+        attributes (
+        	'Specification-Title': 'plugin_survey' + version + '.sfn',
+        	'Specification-Version': version,
+        	'Specification-Vendor': 'Softfran Tech, Inc.',
+        	'Built-By': System.properties['user.name'],
+        	'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+        	'Created-By': "Gradle ${gradle.gradleVersion}",
+        	'Build-Jdk': "${System.properties['java.version']}",
+        	'Implementation-Title': 'plugin_survey', 
+        	'Implementation-Version': version, 
+        	'Class-Path': configurations.runtime.files.collect { 'libs/' + it.name }.join(' ')
+        )
+    }
+    baseName = "plugin_survey"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+	copy {
+		from "build/libs/plugin_survey-" + version + ".jar"
+		into "${System.getProperty( 'user.dir' )}" + "/../abilists_plugins/plugins"
+		rename "plugin_survey-" + version + ".jar", "plugin_survey-" + version + ".sfn"
+		include '**/*.jar'
+	}
+}
+
+https://docs.gradle.org/current/userguide/application_plugin.html
