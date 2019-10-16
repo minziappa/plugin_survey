@@ -19,11 +19,12 @@
 
 	<!-- Set the base package -->
 	<context:component-scan base-package="com.abilists" />
+	<import resource="classpath:spring/common.xml"/>
 
 	<import resource="classpath:spring/h2.xml"/>
 	<import resource="classpath:spring/mappingDb.xml"/>
 	<import resource="classpath:spring/dao.xml"/>
-	<import resource="classpath:spring/plguins.xml"/>
+	<import resource="classpath:spring/plugins.xml"/>
 	<import resource="classpath:spring/utilities.xml"/>
 
 </beans>

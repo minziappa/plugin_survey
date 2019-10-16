@@ -36,13 +36,11 @@ public class SurveyController extends AbstractController {
 
 	@RequestMapping(value = {"/", "", "index"})
 	public String index(HttpServletRequest request, ModelMap model) throws Exception {
-    	logger.info("-------------------------------------index start-------");
 		// Set base URL
 		configBean.setBaseURL(PathUtility.getURLBase(request));
 		configBean.setContextPath(request.getContextPath());
 		model.addAttribute("configBean", configBean);
 
-    	logger.info("-------------------------------------index end-------");
 		return "apps/plugins/survey/index";
 	}
 
