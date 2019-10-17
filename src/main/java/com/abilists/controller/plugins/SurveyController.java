@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.abilists.bean.AbilistsModel;
 import com.abilists.bean.para.survey.SltSurveyPara;
 import com.abilists.core.common.bean.ConfigBean;
 import com.abilists.core.utility.PathUtility;
@@ -36,10 +37,15 @@ public class SurveyController extends AbstractController {
 
 	@RequestMapping(value = {"/", "", "index"})
 	public String index(HttpServletRequest request, ModelMap model) throws Exception {
+		AbilistsModel abilistsModel = new AbilistsModel();
+		abilistsModel.setNavi("plugins");
+		abilistsModel.setMenu("index");
+
 		// Set base URL
 		configBean.setBaseURL(PathUtility.getURLBase(request));
 		configBean.setContextPath(request.getContextPath());
 		model.addAttribute("configBean", configBean);
+		model.addAttribute("model", abilistsModel);
 
 		return "apps/plugins/survey/index";
 	}

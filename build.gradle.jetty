@@ -1,6 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+
+// When you build for Jar, please comment with jettyRun
+apply plugin: 'jetty'
+
 apply plugin: 'org.sonarqube'
 apply plugin: 'jacoco'
 
@@ -89,6 +93,16 @@ dependencies {
 	testCompile "junit:junit:4.+"
 }
 
+/**/
+// gradle jettyRun
+jettyRun {
+	httpPort = 9005
+	reload = 'automatic'
+	scanIntervalSeconds = 2
+	// Change context path (base url). otherwise defaults to name of project
+	contextPath = ''
+}
+
 jar {
     manifest {
         attributes (
@@ -105,8 +119,6 @@ jar {
         )
     }
 
-	exclude ("applicationContext.xml")
-	exclude ("**.properties")
 }
 
 
